@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>GWD — GET WORK DONE | Student Technology Club & Creative Agency</title>
+  <meta name="description" content="GWD is an elite student technology collective bringing together AI, Web Development, Design, Pitching, and Sales. Ideas are easy. Execution is everything." />
+  <meta name="keywords" content="GWD, Get Work Done, AI, Web Development, Design, Pitching, Sales, Tech Club, Startup, Student Innovation" />
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GWD — GET WORK DONE" />
+  <meta property="og:description" content="AI × WEB × IDEAS × EXECUTION. We turn ideas into digital experiences, products and pitches that people remember." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23050505'/><text x='50%' y='68%' font-family='sans-serif' font-weight='900' font-size='42' fill='%23C6FF00' text-anchor='middle'>GWD</text></svg>" />
+
+  <!-- Google Fonts: Space Grotesk, Syne, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & Lenis Smooth Scroll CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========================================================= -->
+  <!-- FULLSCREEN GLOBAL BACKGROUND VIDEO (ACROSS ENTIRE HOMEPAGE) -->
+  <!-- ========================================================= -->
+  <div class="global-video-bg-container" aria-hidden="true">
+    <video 
+      class="global-bg-video" 
+      id="globalBgVideo" 
+      src="gwd2.mp4" 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      webkit-playsinline
+      preload="auto"
+    >
+      <source src="gwd2.mp4" type="video/mp4" />
+      <source src="gwd.mp4" type="video/mp4" />
+      <source src="assets/gwd2.mp4" type="video/mp4" />
+      <source src="assets/gwd.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="global-video-overlay"></div>
+  </div>
+
+  <!-- Custom Cursor Elements (Desktop only) -->
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+  <div class="custom-cursor-outline" id="cursorOutline"></div>
+
+  <!-- Noise Overlay for Cinematic Texture -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Global Audio Soundscape Control (Subtle high-tech haptic synth) -->
+  <div class="audio-control-fixed" id="audioToggle" title="Toggle Futuristic Ambience Sound" role="button" tabindex="0" aria-label="Toggle sound">
+    <div class="sound-wave-bars">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+      <span class="bar bar-4"></span>
+    </div>
+    <span class="sound-label">AUDIO <span class="audio-status">OFF</span></span>
+  </div>
+
+  <!-- FLOATING NAVIGATION BAR -->
+  <header class="navbar-wrapper" id="navbar">
+    <nav class="navbar-container">
+      <a href="#hero" class="nav-brand" aria-label="GWD Homepage">
+        <span class="brand-logo-badge">
+          <span class="pulse-dot"></span>
+        </span>
+        <span class="brand-name">GWD</span>
+      </a>
+
+      <!-- Desktop Navigation Menu Links -->
+      <ul class="nav-menu" id="desktopNav">
+        <li><a href="#about" class="nav-link"><span class="nav-idx">01</span> About</a></li>
+        <li><a href="#what-we-do" class="nav-link"><span class="nav-idx">02</span> What We Do</a></li>
+        <li><a href="#mindset" class="nav-link"><span class="nav-idx">03</span> Mindset</a></li>
+        <li><a href="#projects" class="nav-link"><span class="nav-idx">04</span> Projects</a></li>
+        <li><a href="#people" class="nav-link"><span class="nav-idx">05</span> People</a></li>
+        <li><a href="#pitch" class="nav-link"><span class="nav-idx">06</span> Pitch & Sell</a></li>
+      </ul>
+
+      <!-- Navbar Action Buttons -->
+      <div class="nav-actions">
+        <button class="btn btn-primary magnetic-btn" id="openJoinModalNav">
+          <span>GET STARTED</span>
+          <i data-lucide="arrow-up-right" class="btn-icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-header">
+        <div class="brand-name">GWD</div>
+        <div class="mobile-tagline">AI • WEB • DESIGN • PITCH • SELL</div>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#about" class="mobile-nav-item"><span>01</span> About</a></li>
+        <li><a href="#what-we-do" class="mobile-nav-item"><span>02</span> What We Do</a></li>
+        <li><a href="#mindset" class="mobile-nav-item"><span>03</span> The Mindset</a></li>
+        <li><a href="#projects" class="mobile-nav-item"><span>04</span> Built by GWD</a></li>
+        <li><a href="#people" class="mobile-nav-item"><span>05</span> The People</a></li>
+        <li><a href="#action" class="mobile-nav-item"><span>06</span> In Action</a></li>
+        <li><a href="#pitch" class="mobile-nav-item"><span>07</span> Pitch & Impact</a></li>
+        <li><a href="#stats" class="mobile-nav-item"><span>08</span> Impact Numbers</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <button class="btn btn-primary btn-block" id="mobileJoinBtn">
+          <span>JOIN GWD COLLECTIVE</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main id="mainContent">
+
+    <!-- ========================================================= -->
+    <!-- SECTION 1: HERO SECTION WITH FULLSCREEN ATTACHED VIDEO -->
+    <!-- ========================================================= -->
+    <section class="hero-section" id="hero">
+      <!-- Dedicated Hero Video Layer -->
+      <div class="hero-video-container">
+        <video 
+          class="hero-video" 
+          id="heroVideo" 
+          src="gwd2.mp4"
+          autoplay 
+          muted 
+          loop 
+          playsinline 
+          webkit-playsinline
+          preload="auto"
+        >
+          <source src="gwd2.mp4" type="video/mp4" />
+          <source src="gwd.mp4" type="video/mp4" />
+          <source src="assets/gwd2.mp4" type="video/mp4" />
+          <source src="assets/gwd.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <!-- Subtle Translucent Overlay for Perfect Text Contrast without Dimming Video -->
+        <div class="hero-gradient-overlay"></div>
+      </div>
+
+      <!-- Hero Foreground Content Layer -->
+      <div class="hero-content container">
+        
+        <!-- Small Meta Label -->
+        <div class="hero-badge reveal-item" data-delay="0.1">
+          <span class="badge-status-glow"></span>
+          <span class="badge-text">GWD / GET WORK DONE</span>
+          <span class="badge-divider">|</span>
+          <span class="badge-sub">STUDENT TECH COLLECTIVE</span>
+        </div>
+
+        <!-- Huge Cinematic Headline -->
+        <div class="hero-headline-wrapper">
+          <h1 class="hero-headline">
+            <span class="hero-line reveal-line"><span class="line-inner">GET</span></span>
+            <span class="hero-line reveal-line"><span class="line-inner">WORK</span></span>
+            <span class="hero-line reveal-line"><span class="line-inner accent-text">DONE.</span></span>
+          </h1>
+        </div>
+
+        <!-- Core Tagline & Supporting Pitch -->
+        <div class="hero-supporting-block reveal-item" data-delay="0.6">
+          <div class="core-disciplines">
+            <span class="discipline-tag">AI</span>
+            <span class="discipline-sep">×</span>
+            <span class="discipline-tag">WEB</span>
+            <span class="discipline-sep">×</span>
+            <span class="discipline-tag">IDEAS</span>
+            <span class="discipline-sep">×</span>
+            <span class="discipline-tag accent">EXECUTION</span>
+          </div>
+          <p class="hero-description">
+            We turn ideas into digital experiences, products and pitches that people remember.
+          </p>
+        </div>
+
+        <!-- Hero Call to Action Buttons -->
+        <div class="hero-cta-group reveal-item" data-delay="0.8">
+          <a href="#what-we-do" class="btn btn-primary magnetic-btn">
+            <span>EXPLORE GWD</span>
+            <i data-lucide="arrow-right" class="btn-icon"></i>
+          </a>
+          <a href="#about" class="btn btn-outline magnetic-btn">
+            <span>SEE WHAT WE DO</span>
+            <i data-lucide="arrow-down" class="btn-icon"></i>
+          </a>
+        </div>
+
+        <!-- Hero Bottom Scroll Indicator & Live Telemetry -->
+        <div class="hero-footer-bar reveal-item" data-delay="1.0">
+          <a href="#about" class="scroll-indicator" aria-label="Scroll down to explore">
+            <div class="scroll-mouse">
+              <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-text">SCROLL TO EXPLORE</span>
+            <i data-lucide="chevron-down" class="scroll-chevron"></i>
+          </a>
+
+          <div class="hero-meta-data">
+            <div class="meta-item">
+              <span class="meta-label">STATUS</span>
+              <span class="meta-val"><span class="status-live-dot"></span> LIVE EXECUTION</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">FOCUS</span>
+              <span class="meta-val">AI • DEV • AGENCY</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 2: BRAND STATEMENT & PHILOSOPHY -->
+    <!-- ========================================================= -->
+    <section class="section brand-statement-section" id="about">
+      <div class="container">
+        
+        <div class="section-tag">
+          <span class="tag-number">01</span>
+          <span class="tag-title">THE PHILOSOPHY</span>
+        </div>
+
+        <div class="statement-grid">
+          <div class="statement-hero-text">
+            <div class="reveal-type-block" id="statementReveal1">
+              <span class="word-split">WE</span> 
+              <span class="word-split">DON'T</span> 
+              <span class="word-split">JUST</span> 
+              <span class="word-split">HAVE</span> 
+              <span class="word-split dim-text">IDEAS.</span>
+            </div>
+            <div class="reveal-type-block accent-headline" id="statementReveal2">
+              <span class="word-split">WE</span> 
+              <span class="word-split">GET</span> 
+              <span class="word-split">THEM</span> 
+              <span class="word-split accent-highlight">DONE.</span>
+            </div>
+          </div>
+
+          <div class="statement-details">
+            <div class="quote-bar"></div>
+            <div class="statement-body">
+              <p class="statement-lead">
+                GWD brings together <strong class="text-white">AI</strong>, <strong class="text-white">web development</strong>, <strong class="text-white">creativity</strong>, <strong class="text-white">pitching</strong> and <strong class="text-white">business thinking</strong> to turn ideas into real experiences.
+              </p>
+              <p class="statement-sub">
+                Ideas are easy. Execution is everything. We are a collective of builders, engineers, designers, and storytellers who reject endless talk and deliver high-octane digital products.
+              </p>
+
+              <div class="philosophy-tags-row">
+                <div class="pill-badge"><i data-lucide="zap"></i> Radical Execution</div>
+                <div class="pill-badge"><i data-lucide="cpu"></i> AI-Augmented Workflows</div>
+                <div class="pill-badge"><i data-lucide="award"></i> Competition & Startup Ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 3: WHAT WE DO (5 INTERACTIVE SKILL CARDS) -->
+    <!-- ========================================================= -->
+    <section class="section what-we-do-section" id="what-we-do">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">
+              <span class="tag-number">02</span>
+              <span class="tag-title">PILLARS OF MASTERY</span>
+            </div>
+            <h2 class="section-main-heading">WHAT WE DO</h2>
+          </div>
+          <div class="section-subtitle-block">
+            <p class="subtitle-large">Five skills. One mindset.</p>
+            <p class="subtitle-desc">Each pillar is engineered to turn abstract curiosity into shipping-grade products that win competitions, attract funding, and solve real human problems.</p>
+          </div>
+        </div>
+
+        <!-- 5 Interactive Dynamic Cards Grid -->
+        <div class="cards-interactive-grid">
+          
+          <!-- CARD 01: AI -->
+          <article class="interactive-card card-ai" data-tilt>
+            <div class="card-glow"></div>
+            <div class="card-inner">
+              <div class="card-top">
+                <span class="card-number">01</span>
+                <span class="card-category-badge">CORE CAPABILITY</span>
+                <div class="card-icon-wrap">
+                  <i data-lucide="bot" class="card-lucide-icon"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Visual Canvas/Illustration -->
+              <div class="card-visual visual-ai">
+                <div class="ai-neural-grid">
+                  <div class="neural-node node-1"></div>
+                  <div class="neural-node node-2"></div>
+                  <div class="neural-node node-3"></div>
+                  <div class="neural-line line-a"></div>
+                  <div class="neural-line line-b"></div>
+                  <div class="ai-terminal-preview">
+                    <code>&gt; model.deploy(autonomous_agent)<span class="cursor-blink">_</span></code>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <h3 class="card-title">AI</h3>
+                <p class="card-text">
+                  Use AI to experiment, automate, create and build things that were difficult yesterday. From LLM agent workflows to intelligent automation architectures.
+                </p>
+                <div class="card-action-row">
+                  <span class="action-label">EXPLORE AI CAPABILITIES</span>
+                  <div class="card-arrow-circle">
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 02: WEB -->
+          <article class="interactive-card card-web" data-tilt>
+            <div class="card-glow"></div>
+            <div class="card-inner">
+              <div class="card-top">
+                <span class="card-number">02</span>
+                <span class="card-category-badge">ENGINEERING</span>
+                <div class="card-icon-wrap">
+                  <i data-lucide="code-2" class="card-lucide-icon"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Visual: Browser mockup -->
+              <div class="card-visual visual-web">
+                <div class="mockup-browser">
+                  <div class="browser-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="browser-code-window">
+                    <span class="code-token-pink">const</span> <span class="code-token-green">app</span> = <span class="code-token-yellow">new FullStackEngine()</span>;
+                    <br /><span class="code-token-blue">await</span> app.ship({ speed: <span class="code-token-green">'ultra'</span> });
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <h3 class="card-title">WEB</h3>
+                <p class="card-text">
+                  Build modern websites, digital products and experiences that don't just work — they stand out. Blazing fast, reactive, responsive, and production-grade.
+                </p>
+                <div class="card-action-row">
+                  <span class="action-label">EXPLORE WEB DEV</span>
+                  <div class="card-arrow-circle">
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 03: DESIGN -->
+          <article class="interactive-card card-design" data-tilt>
+            <div class="card-glow"></div>
+            <div class="card-inner">
+              <div class="card-top">
+                <span class="card-number">03</span>
+                <span class="card-category-badge">AESTHETICS & UI/UX</span>
+                <div class="card-icon-wrap">
+                  <i data-lucide="palette" class="card-lucide-icon"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Visual: Design tool UI -->
+              <div class="card-visual visual-design">
+                <div class="design-canvas-preview">
+                  <div class="vector-curve"></div>
+                  <div class="design-anchor anchor-1"></div>
+                  <div class="design-anchor anchor-2"></div>
+                  <div class="floating-palette">
+                    <span class="swatch swatch-lime"></span>
+                    <span class="swatch swatch-black"></span>
+                    <span class="swatch swatch-white"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <h3 class="card-title">DESIGN</h3>
+                <p class="card-text">
+                  Turn ideas into interfaces, identities and experiences people want to interact with. High-end motion, spatial composition, and pixel perfection.
+                </p>
+                <div class="card-action-row">
+                  <span class="action-label">EXPLORE DESIGN SYSTEM</span>
+                  <div class="card-arrow-circle">
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 04: PITCH -->
+          <article class="interactive-card card-pitch" data-tilt>
+            <div class="card-glow"></div>
+            <div class="card-inner">
+              <div class="card-top">
+                <span class="card-number">04</span>
+                <span class="card-category-badge">STORYTELLING</span>
+                <div class="card-icon-wrap">
+                  <i data-lucide="mic" class="card-lucide-icon"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Visual: Waveform / Pitch deck -->
+              <div class="card-visual visual-pitch">
+                <div class="pitch-waveform-wrap">
+                  <div class="waveform-bar h-40"></div>
+                  <div class="waveform-bar h-70"></div>
+                  <div class="waveform-bar h-100"></div>
+                  <div class="waveform-bar h-55"></div>
+                  <div class="waveform-bar h-85"></div>
+                  <div class="waveform-bar h-30"></div>
+                </div>
+                <div class="pitch-badge-floating">
+                  <i data-lucide="sparkles" class="icon-sm"></i>
+                  <span>10/10 Judge Score</span>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <h3 class="card-title">PITCH</h3>
+                <p class="card-text">
+                  A great idea needs a great story. Learn how to communicate ideas clearly, hold attention on stage, and make investors and judges believe in them.
+                </p>
+                <div class="card-action-row">
+                  <span class="action-label">EXPLORE PITCHING</span>
+                  <div class="card-arrow-circle">
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 05: SELL -->
+          <article class="interactive-card card-sell card-full-span" data-tilt>
+            <div class="card-glow"></div>
+            <div class="card-inner">
+              <div class="card-top">
+                <span class="card-number">05</span>
+                <span class="card-category-badge">GROWTH & MONETIZATION</span>
+                <div class="card-icon-wrap">
+                  <i data-lucide="trending-up" class="card-lucide-icon"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Visual: Growth Vector -->
+              <div class="card-visual visual-sell">
+                <div class="growth-graph-wrap">
+                  <div class="graph-grid-bg"></div>
+                  <svg class="growth-svg" viewBox="0 0 300 100" fill="none">
+                    <path d="M0,90 Q 75,80 150,45 T 300,10" stroke="#C6FF00" stroke-width="3" stroke-linecap="round" fill="none" />
+                    <path d="M0,90 Q 75,80 150,45 T 300,10 L300,100 L0,100 Z" fill="url(#limeGradient)" opacity="0.15" />
+                    <defs>
+                      <linearGradient id="limeGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#C6FF00" />
+                        <stop offset="100%" stop-color="#050505" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="metric-popover">
+                    <span class="metric-num">+340%</span>
+                    <span class="metric-text">Conversion Velocity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-bottom">
+                <h3 class="card-title">SELL</h3>
+                <p class="card-text">
+                  Build solutions that people actually want. Understand users, value metrics, market positioning, distribution economics, and authentic persuasion.
+                </p>
+                <div class="card-action-row">
+                  <span class="action-label">EXPLORE COMMERCE & SALES</span>
+                  <div class="card-arrow-circle">
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 4: THE GWD MINDSET (CINEMATIC SCROLL SEQUENCE) -->
+    <!-- ========================================================= -->
+    <section class="section mindset-section" id="mindset">
+      <div class="mindset-ambient-glow"></div>
+      <div class="container">
+        
+        <div class="mindset-header text-center">
+          <div class="section-tag inline-tag">
+            <span class="tag-number">03</span>
+            <span class="tag-title">THE OPERATING SYSTEM</span>
+          </div>
+          <h2 class="mindset-heading">THE GWD MINDSET</h2>
+          <p class="mindset-sub">A relentless cycle from raw hypothesis to undeniable market reality.</p>
+        </div>
+
+        <!-- Scroll-driven Sequential Pipeline -->
+        <div class="mindset-pipeline" id="mindsetPipeline">
+          
+          <div class="mindset-step-node" data-step="1">
+            <div class="step-meta">
+              <span class="step-num">01</span>
+              <span class="step-tag">SPARK</span>
+            </div>
+            <div class="step-word">IDEA</div>
+            <div class="step-desc">Find the friction. Identify the unsolved problem.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-node" data-step="2">
+            <div class="step-meta">
+              <span class="step-num">02</span>
+              <span class="step-tag">PROTOTYPE</span>
+            </div>
+            <div class="step-word">BUILD</div>
+            <div class="step-desc">Write code. Train models. Assemble the MVP at lightning speed.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-node" data-step="3">
+            <div class="step-meta">
+              <span class="step-num">03</span>
+              <span class="step-tag">STRESS-TEST</span>
+            </div>
+            <div class="step-word highlight-red">BREAK</div>
+            <div class="step-desc">Push systems to their failure points without fear of breaking.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-node" data-step="4">
+            <div class="step-meta">
+              <span class="step-num">04</span>
+              <span class="step-tag">REFINE</span>
+            </div>
+            <div class="step-word">ITERATE</div>
+            <div class="step-desc">Analyze feedback, polish interfaces, upgrade algorithms.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-node" data-step="5">
+            <div class="step-meta">
+              <span class="step-num">05</span>
+              <span class="step-tag">NARRATIVE</span>
+            </div>
+            <div class="step-word">PITCH</div>
+            <div class="step-desc">Frame the vision with unshakeable conviction and clarity.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-node" data-step="6">
+            <div class="step-meta">
+              <span class="step-num">06</span>
+              <span class="step-tag">COMMERCIALIZE</span>
+            </div>
+            <div class="step-word">SELL</div>
+            <div class="step-desc">Deliver true utility into real hands and capture value.</div>
+            <div class="step-connector"><i data-lucide="arrow-down"></i></div>
+          </div>
+
+          <div class="mindset-step-final">
+            <div class="final-glow-box">
+              <span class="final-tag">RESULT</span>
+              <h3 class="final-power-text">GET WORK DONE.</h3>
+              <p class="final-caption">No excuses. No vaporware. Only shipped reality.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 5: PROJECTS (BUILT BY GWD SHOWCASE) -->
+    <!-- ========================================================= -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">
+              <span class="tag-number">04</span>
+              <span class="tag-title">PORTFOLIO & EXPERIMENTS</span>
+            </div>
+            <h2 class="section-main-heading">BUILT BY GWD</h2>
+          </div>
+          <div class="section-subtitle-block">
+            <p class="subtitle-large">Ideas become real when someone builds them.</p>
+            <p class="subtitle-desc">Browse our curated laboratory of deployed AI agents, interactive platforms, and competition-winning solutions.</p>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="projects-showcase-grid">
+          
+          <!-- PROJECT 01 -->
+          <article class="project-card" data-project="1">
+            <div class="project-image-container">
+              <div class="project-badge-float">PROJECT 01</div>
+              <div class="project-visual-mock visual-p1">
+                <div class="mock-ui-card">
+                  <div class="ui-header">
+                    <span class="ui-dot"></span>
+                    <span class="ui-title">EDU-AI AGENT v2.4</span>
+                  </div>
+                  <div class="ui-body">
+                    <div class="ui-line line-long"></div>
+                    <div class="ui-line line-med"></div>
+                    <div class="ui-chip-group">
+                      <span class="chip">Neural Tutor</span>
+                      <span class="chip accent">Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn-circle-action" aria-label="Explore Project 1">
+                  <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-cat">AI × EDUCATION</span>
+                <span class="project-status">READY FOR PILOT</span>
+              </div>
+              <h3 class="project-name">Adaptive Intelligent Tutor Engine</h3>
+              <p class="project-desc">
+                An LLM-orchestrated autonomous tutor that creates personalized curriculum branches, real-time code execution sandboxes, and socratic evaluation models for STEM students.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">PyTorch</span>
+                <span class="tech-pill">Next.js</span>
+                <span class="tech-pill">FastAPI</span>
+                <span class="tech-pill">Vector DB</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 02 -->
+          <article class="project-card" data-project="2">
+            <div class="project-image-container">
+              <div class="project-badge-float">PROJECT 02</div>
+              <div class="project-visual-mock visual-p2">
+                <div class="mock-ui-card">
+                  <div class="ui-header">
+                    <span class="ui-dot"></span>
+                    <span class="ui-title">ENTERPRISE WORKFLOW</span>
+                  </div>
+                  <div class="ui-body">
+                    <div class="pipeline-flow-mock">
+                      <div class="pipe-node active">Inquiry</div>
+                      <div class="pipe-arrow">→</div>
+                      <div class="pipe-node active">AI Parser</div>
+                      <div class="pipe-arrow">→</div>
+                      <div class="pipe-node glow">Resolution</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn-circle-action" aria-label="Explore Project 2">
+                  <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-cat">AI × BUSINESS</span>
+                <span class="project-status">DEPLOYED</span>
+              </div>
+              <h3 class="project-name">Autonomous Workflow Synthesizer</h3>
+              <p class="project-desc">
+                Enterprise-grade agent system that automatically handles multi-source sales leads, draft contracts, validates specifications, and routes CRM workflows without human bottleneck.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">LangChain</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">PostgreSQL</span>
+                <span class="tech-pill">Docker</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03 -->
+          <article class="project-card" data-project="3">
+            <div class="project-image-container">
+              <div class="project-badge-float">PROJECT 03</div>
+              <div class="project-visual-mock visual-p3">
+                <div class="mock-ui-card">
+                  <div class="ui-header">
+                    <span class="ui-dot"></span>
+                    <span class="ui-title">WEBGL SPATIAL ENGINE</span>
+                  </div>
+                  <div class="ui-body">
+                    <div class="cube-3d-mock">
+                      <div class="cube-face front"></div>
+                      <div class="cube-face top"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn-circle-action" aria-label="Explore Project 3">
+                  <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-cat">WEB × EXPERIENCE</span>
+                <span class="project-status">AWWWARDS NOMINEE</span>
+              </div>
+              <h3 class="project-name">Kinetic Spatial Portfolio Platform</h3>
+              <p class="project-desc">
+                High-performance 3D spatial web experience with dynamic shaders, custom physics simulation, and smooth gesture controllers built for creative brands and agencies.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Three.js</span>
+                <span class="tech-pill">GSAP</span>
+                <span class="tech-pill">GLSL Shaders</span>
+                <span class="tech-pill">TypeScript</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 04 -->
+          <article class="project-card" data-project="4">
+            <div class="project-image-container">
+              <div class="project-badge-float">PROJECT 04</div>
+              <div class="project-visual-mock visual-p4">
+                <div class="mock-ui-card">
+                  <div class="ui-header">
+                    <span class="ui-dot"></span>
+                    <span class="ui-title">EXECUTION ENGINE</span>
+                  </div>
+                  <div class="ui-body">
+                    <div class="sprint-timer-mock">
+                      <span class="timer-digits">48:00:00</span>
+                      <span class="timer-label">HACKATHON RUNTIME</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn-circle-action" aria-label="Explore Project 4">
+                  <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta-row">
+                <span class="project-cat">IDEA × IMPACT</span>
+                <span class="project-status">HACKATHON WINNER</span>
+              </div>
+              <h3 class="project-name">Campus Project Incubator Matrix</h3>
+              <p class="project-desc">
+                A rapid-fire platform matching student developers with real-world non-profit problems, providing sprint management tooling, automated pitch decks, and judging rubrics.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">Tailwind</span>
+                <span class="tech-pill">WebSockets</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 6: PEOPLE BEHIND GWD (PREMIUM TEAM SECTION) -->
+    <!-- ========================================================= -->
+    <section class="section people-section" id="people">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">
+              <span class="tag-number">05</span>
+              <span class="tag-title">LEADERSHIP & ARCHITECTS</span>
+            </div>
+            <h2 class="section-main-heading">THE PEOPLE</h2>
+          </div>
+          <div class="section-subtitle-block">
+            <p class="subtitle-large">Ideas don't build themselves.</p>
+            <p class="subtitle-desc">Meet the visionary organizers driving the GWD engine forward. Structured with easily customizable slots for all core team leads.</p>
+          </div>
+        </div>
+
+        <!-- Team Roster Grid -->
+        <div class="people-cards-grid">
+          
+          <!-- MEMBER 01 (Placeholder easily editable) -->
+          <div class="person-card" data-member="1">
+            <div class="person-portrait-frame">
+              <div class="portrait-placeholder-canvas bg-portrait-1">
+                <div class="avatar-meta-badge">01 // LEAD</div>
+                <div class="portrait-graphic-icon">
+                  <i data-lucide="terminal" class="avatar-icon-lg"></i>
+                </div>
+                <div class="portrait-cyber-grid"></div>
+              </div>
+              <div class="portrait-corner-decor tl"></div>
+              <div class="portrait-corner-decor tr"></div>
+              <div class="portrait-corner-decor bl"></div>
+              <div class="portrait-corner-decor br"></div>
+            </div>
+
+            <div class="person-details">
+              <div class="person-role-tag">LEAD TECHNOLOGIST &amp; AI ARCHITECT</div>
+              <h3 class="person-name">[MEMBER NAME 01]</h3>
+              <p class="person-quote">
+                "We don't wait for permission or the perfect tech stack. We pick the best tools, write clean code, and ship working solutions."
+              </p>
+              <div class="person-socials">
+                <a href="#people" class="social-chip" title="GitHub"><i data-lucide="github"></i> GitHub</a>
+                <a href="#people" class="social-chip" title="LinkedIn"><i data-lucide="linkedin"></i> LinkedIn</a>
+                <a href="#people" class="social-chip" title="X (Twitter)"><i data-lucide="twitter"></i> X</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEMBER 02 (Placeholder easily editable) -->
+          <div class="person-card" data-member="2">
+            <div class="person-portrait-frame">
+              <div class="portrait-placeholder-canvas bg-portrait-2">
+                <div class="avatar-meta-badge">02 // STRATEGY</div>
+                <div class="portrait-graphic-icon">
+                  <i data-lucide="layers" class="avatar-icon-lg"></i>
+                </div>
+                <div class="portrait-cyber-grid"></div>
+              </div>
+              <div class="portrait-corner-decor tl"></div>
+              <div class="portrait-corner-decor tr"></div>
+              <div class="portrait-corner-decor bl"></div>
+              <div class="portrait-corner-decor br"></div>
+            </div>
+
+            <div class="person-details">
+              <div class="person-role-tag">CREATIVE DIRECTOR &amp; PITCH STRATEGIST</div>
+              <h3 class="person-name">[MEMBER NAME 02]</h3>
+              <p class="person-quote">
+                "Design and storytelling are the bridge between raw code and human conviction. When you nail both, you become unstoppable."
+              </p>
+              <div class="person-socials">
+                <a href="#people" class="social-chip" title="GitHub"><i data-lucide="github"></i> GitHub</a>
+                <a href="#people" class="social-chip" title="LinkedIn"><i data-lucide="linkedin"></i> LinkedIn</a>
+                <a href="#people" class="social-chip" title="Figma"><i data-lucide="figma"></i> Figma</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 7: GWD IN ACTION (CINEMATIC MEDIA SHOWCASE) -->
+    <!-- ========================================================= -->
+    <section class="section action-section" id="action">
+      <div class="container">
+        
+        <div class="section-tag text-center inline-tag">
+          <span class="tag-number">06</span>
+          <span class="tag-title">CINEMATIC REALITY</span>
+        </div>
+
+        <h2 class="action-heading text-center">
+          THIS IS WHAT GETTING WORK DONE LOOKS LIKE.
+        </h2>
+
+        <!-- Large Cinematic Media Frame -->
+        <div class="cinematic-media-container" id="mediaShowcase">
+          <div class="cinematic-frame-glow"></div>
+          <div class="cinematic-video-box">
+            <video 
+              class="cinematic-showcase-video" 
+              id="actionVideo" 
+              src="gwd2.mp4"
+              autoplay 
+              muted 
+              loop 
+              playsinline
+            >
+              <source src="gwd2.mp4" type="video/mp4" />
+              <source src="gwd.mp4" type="video/mp4" />
+              <source src="assets/gwd2.mp4" type="video/mp4" />
+              <source src="assets/gwd.mp4" type="video/mp4" />
+            </video>
+            
+            <div class="media-overlay-controls">
+              <div class="media-top-bar">
+                <div class="live-stream-badge">
+                  <span class="rec-red-dot"></span> REC // GWD ENGINE
+                </div>
+                <div class="video-resolution-tag">4K HDR • 60 FPS</div>
+              </div>
+
+              <div class="media-bottom-bar">
+                <button class="video-play-btn" id="toggleShowcasePlay" aria-label="Play or Pause Video">
+                  <i data-lucide="pause" id="playPauseIcon"></i>
+                  <span id="playPauseText">PAUSE FEED</span>
+                </button>
+                <div class="playback-timeline-bar">
+                  <div class="playback-progress" id="videoProgress"></div>
+                </div>
+                <button class="video-mute-btn" id="toggleShowcaseMute" aria-label="Mute or Unmute Video">
+                  <i data-lucide="volume-x" id="muteIcon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 8: PITCH & STORYTELLING -->
+    <!-- ========================================================= -->
+    <section class="section pitch-statement-section" id="pitch">
+      <div class="container">
+        
+        <div class="section-tag">
+          <span class="tag-number">07</span>
+          <span class="tag-title">THE ART OF PERSUASION</span>
+        </div>
+
+        <div class="pitch-statement-box">
+          <div class="pitch-headline-line reveal-pitch-1">
+            AN IDEA IS WORTHLESS
+          </div>
+          <div class="pitch-headline-line accent-lime-block reveal-pitch-2">
+            UNTIL YOU CAN MAKE SOMEONE BELIEVE IN IT.
+          </div>
+        </div>
+
+        <!-- Formula Chain -->
+        <div class="formula-chain-wrap">
+          <div class="formula-step">
+            <span class="f-num">01</span>
+            <span class="f-name">IDEA</span>
+          </div>
+          <div class="f-arrow">→</div>
+          <div class="formula-step">
+            <span class="f-num">02</span>
+            <span class="f-name">STORY</span>
+          </div>
+          <div class="f-arrow">→</div>
+          <div class="formula-step">
+            <span class="f-num">03</span>
+            <span class="f-name">PITCH</span>
+          </div>
+          <div class="f-arrow">→</div>
+          <div class="formula-step accent-step">
+            <span class="f-num">04</span>
+            <span class="f-name">IMPACT</span>
+          </div>
+        </div>
+
+        <div class="pitch-explanation-card">
+          <p class="pitch-desc-text">
+            GWD isn't only about building technology. It's about learning how to communicate ideas, present solutions and create impact. We teach you how to stand in front of seasoned judges, corporate sponsors, and early adopters, commanding the room with narrative precision.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 9: BUILD + SELL (SPLIT SCREEN EXPERIENCE) -->
+    <!-- ========================================================= -->
+    <section class="section split-build-sell-section" id="build-sell">
+      <div class="split-screen-container">
+        
+        <!-- Left Side: BUILD -->
+        <div class="split-side split-build">
+          <div class="split-bg-grid"></div>
+          <div class="split-content-inner">
+            <div class="split-badge"><i data-lucide="cpu"></i> ENGINEERING</div>
+            <h3 class="split-huge-title">BUILD</h3>
+            <p class="split-lead-text">Build things people need.</p>
+            <p class="split-sub-text">
+              Architecture that scales, algorithms that think, UI that glides at 120 FPS. We build without taking shortcuts.
+            </p>
+            <ul class="split-list">
+              <li><i data-lucide="check" class="lime-check"></i> Autonomous AI Pipelines</li>
+              <li><i data-lucide="check" class="lime-check"></i> High-throughput Full Stack Systems</li>
+              <li><i data-lucide="check" class="lime-check"></i> Interactive Spatial Interfaces</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Side: SELL -->
+        <div class="split-side split-sell">
+          <div class="split-bg-glow"></div>
+          <div class="split-content-inner">
+            <div class="split-badge accent-badge"><i data-lucide="trending-up"></i> STRATEGY</div>
+            <h3 class="split-huge-title accent-text">SELL</h3>
+            <p class="split-lead-text">Make people understand why they need them.</p>
+            <p class="split-sub-text">
+              Market positioning, psychological alignment, brand resonance, and clear value capture mechanics.
+            </p>
+            <ul class="split-list">
+              <li><i data-lucide="check" class="lime-check"></i> Bulletproof Competition Decks</li>
+              <li><i data-lucide="check" class="lime-check"></i> Customer Discovery &amp; Validation</li>
+              <li><i data-lucide="check" class="lime-check"></i> Go-to-Market Distribution Speed</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Center Dynamic Banner -->
+      <div class="split-center-banner">
+        <span class="banner-pill">TECH + CREATIVITY + BUSINESS</span>
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 10: NUMBERS / IMPACT (ANIMATED COUNTERS) -->
+    <!-- ========================================================= -->
+    <section class="section stats-section" id="stats">
+      <div class="container">
+        
+        <div class="section-tag text-center inline-tag">
+          <span class="tag-number">08</span>
+          <span class="tag-title">METRICS THAT MATTER</span>
+        </div>
+
+        <h2 class="stats-heading text-center">MEASURED BY IMPACT</h2>
+        <p class="stats-caption text-center">Transparent placeholders designed for dynamic club expansion.</p>
+
+        <!-- Dynamic Counter Matrix -->
+        <div class="stats-grid">
+          
+          <div class="stat-card" data-counter-target="1">
+            <div class="stat-inner">
+              <div class="stat-number-wrap">
+                <span class="stat-num counter" data-target="1" data-prefix="0">01</span>
+              </div>
+              <div class="stat-label">Core Mission</div>
+              <div class="stat-desc">Zero compromise on execution speed.</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-inner">
+              <div class="stat-number-wrap">
+                <span class="stat-num accent-text">∞</span>
+              </div>
+              <div class="stat-label">Ideas</div>
+              <div class="stat-desc">Unlimited hypotheses waiting to be built.</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-inner">
+              <div class="stat-number-wrap">
+                <span class="stat-num">24/7</span>
+              </div>
+              <div class="stat-label">Build Mode</div>
+              <div class="stat-desc">Continuous experimentation and iteration.</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-inner">
+              <div class="stat-number-wrap">
+                <span class="stat-num accent-text counter" data-target="100" data-suffix="%">100%</span>
+              </div>
+              <div class="stat-label">Get It Done</div>
+              <div class="stat-desc">Shipped deliverables across every team.</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SECTION 11: FINAL CINEMATIC CTA & FOOTER -->
+    <!-- ========================================================= -->
+    <section class="section final-cta-section" id="contact">
+      <div class="cta-cyber-glow"></div>
+      <div class="container text-center">
+        
+        <div class="cta-eyebrow reveal-item">
+          <span class="live-pulse-dot"></span>
+          <span>READY?</span>
+        </div>
+
+        <h2 class="cta-massive-title">
+          <span class="cta-word">GET</span>
+          <span class="cta-word">WORK</span>
+          <span class="cta-word accent-text">DONE.</span>
+        </h2>
+
+        <p class="cta-sub-copy">
+          Don't wait for the perfect idea. Build the next one.
+        </p>
+
+        <div class="cta-action-buttons">
+          <button class="btn btn-primary btn-large magnetic-btn" id="openJoinModalFinal">
+            <span>JOIN GWD</span>
+            <i data-lucide="arrow-right" class="btn-icon"></i>
+          </button>
+          <a href="#hero" class="btn btn-outline btn-large magnetic-btn">
+            <span>EXPLORE THE CLUB</span>
+            <i data-lucide="arrow-up" class="btn-icon"></i>
+          </a>
+        </div>
+
+        <!-- Footer Partition -->
+        <footer class="footer-wrapper">
+          <div class="footer-divider"></div>
+          
+          <div class="footer-top-row">
+            <div class="footer-brand-col">
+              <div class="footer-brand-title">GWD — GET WORK DONE</div>
+              <div class="footer-disciplines">
+                AI • WEB • DESIGN • PITCH • SELL
+              </div>
+              <p class="footer-tagline">
+                Ideas are easy. Execution is everything.
+              </p>
+            </div>
+
+            <div class="footer-nav-col">
+              <div class="f-col-title">NAVIGATION</div>
+              <ul class="f-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">Philosophy</a></li>
+                <li><a href="#what-we-do">What We Do</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#people">The Team</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-social-col">
+              <div class="f-col-title">CONNECT</div>
+              <ul class="f-social-list">
+                <li><a href="https://github.com" target="_blank" rel="noopener"><i data-lucide="github"></i> GitHub</a></li>
+                <li><a href="https://linkedin.com" target="_blank" rel="noopener"><i data-lucide="linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://discord.com" target="_blank" rel="noopener"><i data-lucide="message-square"></i> Discord</a></li>
+                <li><a href="https://twitter.com" target="_blank" rel="noopener"><i data-lucide="twitter"></i> X / Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom-row">
+            <div class="f-copy">
+              &copy; <span id="currentYear">2026</span> GWD (GET WORK DONE). All rights reserved.
+            </div>
+            <div class="f-made-with">
+              ENGINEERED FOR JUDGING EXCELLENCE • AWWWARDS TIER
+            </div>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- MODAL: INTERACTIVE "JOIN GWD" APPLICATION MODAL -->
+  <!-- ========================================================= -->
+  <div class="modal-overlay" id="joinModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-tag">INITIATION</span>
+          <h3 class="modal-heading">JOIN GWD</h3>
+        </div>
+        <button class="modal-close-btn" id="closeJoinModal" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc">
+          Tell us what you want to build. We are looking for self-driven thinkers, coders, designers, and pitch strategists.
+        </p>
+
+        <form id="joinForm" onsubmit="event.preventDefault(); window.submitJoinForm();">
+          <div class="form-group">
+            <label for="applicantName">FULL NAME</label>
+            <input type="text" id="applicantName" placeholder="e.g. Alex Chen" required />
+          </div>
+
+          <div class="form-group">
+            <label for="applicantEmail">COLLEGE / CONTACT EMAIL</label>
+            <input type="email" id="applicantEmail" placeholder="alex@university.edu" required />
+          </div>
+
+          <div class="form-group">
+            <label for="primaryTrack">PRIMARY TRACK</label>
+            <select id="primaryTrack" required>
+              <option value="ai">AI &amp; Machine Learning Automation</option>
+              <option value="web">Full Stack Web &amp; Systems Dev</option>
+              <option value="design">UI/UX &amp; 3D Motion Design</option>
+              <option value="pitch">Pitching &amp; Presentation Strategy</option>
+              <option value="sales">Sales, Growth &amp; Business Strategy</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="applicantStory">WHAT HAVE YOU BUILT OR WANT TO BUILD?</label>
+            <textarea id="applicantStory" rows="3" placeholder="Briefly describe a project, hackathon idea, or skill you bring..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-block">
+              <span>SUBMIT APPLICATION</span>
+              <i data-lucide="send"></i>
+            </button>
+          </div>
+        </form>
+
+        <div class="form-success-message" id="formSuccessMessage">
+          <i data-lucide="check-circle-2" class="success-icon"></i>
+          <h4>APPLICATION RECEIVED</h4>
+          <p>Welcome to the queue. Prepare your ideas — we will contact you for the initiation sprint.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Controller -->
+  <script src="script.js"></script>
+</body>
+</html>
